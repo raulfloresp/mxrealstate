@@ -1,0 +1,37 @@
+id_city,description_city,id_mzone,crime_idx,city_lat,city_long
+1,Iztapalapa,1,5,25.6274,-100.2642
+2,Cuauhtemoc,1,5,25.6274,-100.2642
+3,Gustavo A. Madero,1,4,25.6274,-100.2642
+4,Benito Juárez,1,3,25.6274,-100.2642
+5,Coyoacán,1,3,25.6274,-100.2642
+6,Álvaro Obregón,1,3,25.6274,-100.2642
+7,Miguel Hidalgo,1,3,25.6274,-100.2642
+8,Tlalpan,1,3,25.6274,-100.2642
+9,Venustiano Carranza,1,2,25.6274,-100.2642
+10,Azcapotzalco,1,2,25.6274,-100.2642
+11,Iztacalco,1,2,25.6274,-100.2642
+12,Xochimilco,1,2,25.6274,-100.2642
+13,Tláhuac,1,1,25.6274,-100.2642
+14,La Magdalena Contreras,1,1,25.6274,-100.2642
+15,Cuajimalpa de Morelos,1,1,25.6274,-100.2642
+16,Milpa Alta,1,1,25.6274,-100.2642
+17,Guadalajara,3,5,25.6274,-100.2642
+18,Zapopan,3,5,25.6274,-100.2642
+19,San Pedro Tlaquepaque,3,3,25.6274,-100.2642
+20,Tlajomulco de Zúñiga,3,2,25.6274,-100.2642
+21,Tonalá,3,2,25.6274,-100.2642
+22,El Salto,3,1,25.6274,-100.2642
+23,Ixtlahuacán de los Membrillos,3,1,25.6274,-100.2642
+24,Juanacatlán,3,1,25.6274,-100.2642
+25,Monterrey,2,4,25.6274,-100.2642
+26,Guadalupe,2,2,25.6274,-100.2642
+27,Apodaca,2,2,25.6274,-100.2642
+28,General Escobedo,2,1,25.6274,-100.2642
+29,San Nicolás de los Garza,2,1,25.6274,-100.2642
+30,García,2,1,25.6274,-100.2642
+31,Juárez,2,1,25.6274,-100.2642
+32,Santa Catarina,2,1,25.6274,-100.2642
+33,Cadereyta Jiménez,2,1,25.6274,-100.2642
+34,San Pedro Garza García,2,1,25.6274,-100.2642
+35,Salinas Victoria,2,1,25.6274,-100.2642
+36,Santiago,2,1,25.6274,-100.2642

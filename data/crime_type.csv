@@ -1,0 +1,33 @@
+id_crime_type_subtype,id_crime_type,description_type,id_crime_subtype
+1,1,Homicidio,1
+2,1,Homicidio,2
+3,2,Lesiones,3
+4,2,Lesiones,4
+5,3,Robo,5
+6,3,Robo,6
+7,3,Robo,7
+8,3,Robo,8
+9,3,Robo,9
+10,3,Robo,10
+11,3,Robo,11
+12,3,Robo,12
+13,3,Robo,13
+14,3,Robo,14
+15,3,Robo,15
+16,4,Allanamiento de morada,
+17,5,Daño a la propiedad,
+18,6,Despojo,
+19,7,Otros delitos contra el patrimonio,
+20,8,Otros delitos contra la familia,
+21,9,Otros delitos que atentan contra la libertad personal,
+22,10,Otros delitos que atentan contra la libertad y la seguridad sexual,
+23,11,Otros delitos que atentan contra la vida y la integridad corporal,
+24,12,Rapto,
+25,13,Secuestro,
+26,14,Violación equiparada,
+27,15,Violación simple,
+28,16,Amenazas,
+29,17,Violencia familiar,
+30,18,Narcomenudeo,
+31,19,Otros delitos del Fuero Común,
+32,20,Fraude,

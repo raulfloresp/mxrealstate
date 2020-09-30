@@ -1,0 +1,16 @@
+id_crime_subtype,description_subtype
+1,Homicidio culposo
+2,Homicidio doloso
+3,Lesiones culposas
+4,Lesiones dolosas
+5,Otros robos
+6,Robo a casa habitación
+7,Robo a negocio
+8,Robo a transeúnte en espacio abierto al público
+9,Robo a transeúnte en vía pública
+10,Robo a transportista
+11,Robo de autopartes
+12,Robo de vehículo automotor
+13,Robo en transporte individual
+14,Robo en transporte público colectivo
+15,Robo en transporte público individual
