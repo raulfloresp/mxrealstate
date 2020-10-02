@@ -19,7 +19,7 @@ ENV = 'dev'
 if ENV == 'dev':
     # app.debug = True
     parameters = f'postgresql+psycopg2://postgres:{password}@localhost:5432/houses'
-    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    cors = CORS(app, resources={r"/*": {"origins": "*"}})
     app.config['CORS_HEADERS'] = 'Content-Type'
 else:
     # app.debug = False
@@ -142,16 +142,16 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
     # Return json with descriptions 
     return resultHousesCrimePlaces
 
-@app.route("/metropoli_zone")
-def getMetropolitanAreas():
-    ## Retrieve metropolitan zones data 
-    postgreSQL_select_met_zone = "SELECT * FROM metropolitan_zone;"
-    connection = engine.connect()
-    met_zone_catalog = connection.execute(postgreSQL_select_met_zone)
-    connection.close()
+# @app.route("/metropoli_zone")
+# def getMetropolitanAreas():
+#     ## Retrieve metropolitan zones data 
+#     postgreSQL_select_met_zone = "SELECT * FROM metropolitan_zone;"
+#     connection = engine.connect()
+#     met_zone_catalog = connection.execute(postgreSQL_select_met_zone)
+#     connection.close()
     
-    # Return json with metropoli id and description 
-    return suggested_price   
+#     # Return json with metropoli id and description 
+#     return suggested_price   
 
 
 
