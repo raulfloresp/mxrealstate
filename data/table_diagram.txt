@@ -1,0 +1,64 @@
+metropolitan_zone
+-
+id_mzone PK serial
+description varchar(60)
+
+cities
+-
+id_city PK serial
+description_city varchar(100)
+id_mzone int FK >- metropolitan_zone.id_mzone
+crime_idx int
+city_lat float
+city_long float
+
+place_type
+-
+id_place_type PK serial
+description_place varchar(100)
+
+crime_subtype
+-
+id_crime_subtype PK serial
+description_subtype VARCHAR(60)
+
+crime_type
+-
+id_crime_type_subtype SERIAL PK
+id_crime_type INT
+description_type VARCHAR(100)
+id_crime_subtype INT FK >- crime_subtype.id_crime_subtype
+
+crime_detail
+-
+id_crime pk SERIAL
+id_city INT FK >- cities.id_city
+id_crime_type_subtype INT FK >- crime_type.id_crime_type_subtype
+year_record INT 
+month_record INT 
+amount INT 
+
+places_of_interest
+-
+id_place PK SERIAL
+id_city INT FK >- cities.id_city
+id_place_type INT FK >- place_type.id_place_type
+place_name VARCHAR(100)
+place_lat FLOAT 
+place_long FLOAT
+rating FLOAT
+user_rating_total FLOAT
+
+houses
+-
+id_publicacion SERIAL PK
+id_city INT FK >- cities.id_city
+house_lat FLOAT 
+house_long FLOAT
+rooms INT
+bathrooms INT
+squared_meters FLOAT
+builded_squared_meters FLOAT
+house_details VARCHAR(3000)
+address VARCHAR(1000)
+price FLOAT

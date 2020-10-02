@@ -245,6 +245,10 @@ hr {
 	border-radius: 0px
 }
 
+.about-img{
+    max-width: 100%;
+    max-height: 100%;
+}
 .btn i {
 	padding-right: 11px
 }
@@ -1261,7 +1265,7 @@ hr {
 }
 
 .slider-height {
-	min-height: 860px;
+	min-height: 700px;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover
@@ -1294,6 +1298,8 @@ hr {
 .slider-height2 {
 	height: 750px
 }
+
+.slider-area{padding-bottom:85px}}
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	.slider-height2 {
@@ -1336,7 +1342,8 @@ hr {
 }
 
 .slider-area {
-	margin-top: -1px;
+	margin-top: -2px;
+	margin-bottom: -20px;
 	position: relative
 }
 
@@ -1361,14 +1368,6 @@ hr {
 	.slider-area .hero__caption {
 		padding-top: 40px
 	}
-}
-
-.slider-area .hero__caption span {
-	display: inline-block;
-	color: #9F78FF;
-	font-size: 16px;
-	text-transform: inherit;
-	margin-bottom: 15px
 }
 
 .slider-area .hero__caption h1 {
@@ -1409,7 +1408,7 @@ hr {
 
 .slider-area .hero__caption p {
 	margin-bottom: 31px;
-	color: #A5A7C5;
+	color: #fff;
 	font-size: 18px;
 	line-height: 1.6
 }
@@ -1540,7 +1539,8 @@ hr {
 }
 
 .slider-bg {
-	background: #2482FF
+	background: #2482FF;
+	padding-bottom: 50px;
 }
 
 .dot-style .slick-dots {
@@ -1592,7 +1592,11 @@ hr {
 	color: #fff;
 	font-size: 30px;
 	font-weight: 600;
-	margin-bottom: 20px
+	margin-bottom: 20px;
+	margin-top: -20px;
+}
+.domain-search-area {
+	margin-top: -20px;
 }
 
 @media (max-width: 575px) {
@@ -1624,11 +1628,11 @@ hr {
 	}
 }
 
-form.search-box .input-form {
+.w3-select {
 	position: relative
 }
 
-form.search-box .input-form input {
+.w3-select input {
 	height: 65px;
 	width: 100%;
 	color: #777777;
@@ -1640,34 +1644,34 @@ form.search-box .input-form input {
 }
 
 @media (max-width: 575px) {
-	form.search-box .input-form input {
+	.w3-select input {
 		margin-bottom: 20px
 	}
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-	form.search-box .input-form input {
+	.w3-select input {
 		padding: 9px 33px 9px 71px
 	}
 }
 
-form.search-box .input-form input::placeholder {
+.w3-select input::placeholder {
 	color: #616875
 }
 
 @media (max-width: 575px) {
-	form.search-box .input-form input::placeholder {
+	.w3-select input::placeholder {
 		font-size: 13px
 	}
 }
 
-form.search-box .input-form .search-form {
+.w3-select .search-form {
 	position: absolute;
 	right: 9px;
 	top: 8px
 }
 
-form.search-box .input-form .search-form button {
+.w3-select .search-form button {
 	text-align: center;
 	color: #fff;
 	font-size: 21px;
@@ -1680,19 +1684,19 @@ form.search-box .input-form .search-form button {
 	border: 0
 }
 
-form.search-box .input-form .search-form i {
+.w3-select .search-form i {
 	position: relative;
 	left: 2px;
 	top: 3px
 }
 
-form.search-box .input-form .world-form {
+.w3-select .world-form {
 	position: absolute;
 	left: 21px;
 	top: 8px
 }
 
-form.search-box .input-form .world-form i {
+.w3-select .world-form i {
 	color: #c4c4c4;
 	font-size: 32px;
 	display: block;
@@ -2891,7 +2895,7 @@ form.search-box .input-form .world-form i {
 
 .btn,
 .main-header .main-menu ul ul.submenu,
-form.search-box .input-form .search-form button,
+.w3-select .search-form button,
 .footer-area .footer-form form .form-icon button {
 	background: #a077ff;
 	background: -moz-linear-gradient(top, #a077ff 0%, #ef67ff 100%);
@@ -3309,3 +3313,12 @@ del {
 .switch-wrap {
 	margin-bottom: 10px
 }
+
+/*Bootstrap padding fix*/
+[class*="col-"]{
+    padding: 1rem;
+  }
+
+
+
+
