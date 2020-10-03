@@ -85,8 +85,8 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
                                     " INNER JOIN cities ci " +
                                     " ON ho.id_city = ci.id_city" +
                                     " WHERE id_mzone = " +  id_mzone +
-	                                "       AND price >= " + min_presupuesto +
-                                    "       AND price <= " + max_presupuesto)
+	                                "       AND price >= '" + min_presupuesto + "'"
+                                    "       AND price <= '" + max_presupuesto) + "'"
     
     postgreSQL_select_crime = ("SELECT ct.description_type, sum(cd.amount)" +
                                     "  FROM crime_detail cd" +
@@ -142,16 +142,11 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
     # Return json with descriptions 
     return resultHousesCrimePlaces
 
-# @app.route("/metropoli_zone")
-# def getMetropolitanAreas():
-#     ## Retrieve metropolitan zones data 
-#     postgreSQL_select_met_zone = "SELECT * FROM metropolitan_zone;"
-#     connection = engine.connect()
-#     met_zone_catalog = connection.execute(postgreSQL_select_met_zone)
-#     connection.close()
-    
-#     # Return json with metropoli id and description 
-#     return suggested_price   
+# @app.route("/submitFiltrar/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto>")
+# def getInicializacion(id_mzone,id_city,min_presupuesto,max_presupuesto):
+        
+#     # Rendering mapa.html
+#     return render_template('mapa.html', id_mzone=id_mzone, id_city=id_city, min_presupuesto=min_presupuesto, max_presupuesto=max_presupuesto) 
 
 
 
