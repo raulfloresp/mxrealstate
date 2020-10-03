@@ -5,6 +5,9 @@
     <title> House Hunter </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- plotly here -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
@@ -44,17 +47,18 @@
                                             <ul id="navigation">                    
                                                 <li><select class="custom-select mr-sm-2" name="option" id="metZone_combo" onchange="onChangeCityCombo(this.value, false)">
                                                         <option value="" disabled selected>Ciudad </option>
-                                                    </select>
+                                                    </select></li>
                                                     <li><select class="custom-select mr-sm-2" name="option" id="city_combo" >
                                                         <option value="" disabled selected>Municipio </option>
-                                                    </select>
+                                                    </select></li>
                                                       <li> Presupuesto:
                                                         <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
                                                         <div id="slider-range"></div>
                                                         <input type="hidden" id="min_amount"/>
                                                         <input type="hidden" id="max_amount"/>
                                                 </li>
-                                                <li class="button-header margin-left "><a href="register.html" class="btn">Filtrar </a></li>
+                                                <li class="button-header margin-left "><a class="btn" onclick="onClickFiltrar()">Filtrar </a>
+                                                </li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -79,7 +83,7 @@
                         <div class="section-tittle section-tittle2 mb-30">
                             <h3>Zona Metropolitana de Monterrey</h3>
                         </div>
-                        <div class="about-img ">
+                        <div class="about-img">
                             <img src="https://assets.urbanturf.com/dc/images/blog/2018/08/google-map.jpg"width="600" height="600">
                         </div>
                     </div>
@@ -88,10 +92,8 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle2 mb-30">
                                 <h3> Pie Chart</h3>
+                                <div id="pie"></div>
                             </div> 
-                            <div class="about-img ">
-                                <img src="https://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Pie-Chart-PNG-Transparent-Image.png"width="600" height="600" >
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,9 +106,7 @@
                         <!-- about-img -->
                         <div class="section-tittle section-tittle2 mb-30">
                             <h3>Distribución de metros cuadrados </h3>
-                        </div>
-                        <div class="about-img ">
-                            <img src="https://nelsontouchconsulting.files.wordpress.com/2011/01/box-plot-fig-22.png"width="600" height="600">
+                            <div id="plot"></div>
                         </div>
                     </div>
                     <div class="col-xl-6">
@@ -114,10 +114,8 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle2 mb-30">
                                 <h3> Lugares turísticos </h3>
+                                <div id="bar"></div>
                             </div> 
-                            <div class="about-img ">
-                                <img src="https://in.mathworks.com/help/examples/graphics/win64/BarGraphStylesExample_01.png"width="600" height="600" >
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -211,7 +209,8 @@
 <script src="assets/js/d3.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/generalFunctions.js"></script>
-<script src="assets/js/multi.js"></script> 
+<script src="assets/js/multi.js"></script>
 <script src="assets/js/mapa.js"></script>  
+ 
 </body>
 </html>
