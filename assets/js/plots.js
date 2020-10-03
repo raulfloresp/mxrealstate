@@ -1,4 +1,4 @@
-d3.json("ejemplo_json.json",(jsondata) => {
+d3.json("data/ejemplo_json.json",(jsondata) => {
     console.log(jsondata);
 
 //-----------------------------------       Bar Chart -------------------------------------------------------------------
@@ -69,12 +69,6 @@ for (var i=0 ;i < crimeArray.length; i++){
 
 
 //-----------------------------------        box plot  -------------------------------------------------------------------
-
-//filtrar info por id_city 
-//filtrar info por price 
-y1=[1, 2, 3, 4, 4, 4, 8, 9, 10]
-y2=[1, 2, 3, 4, 4, 4, 8, 9, 10]
-
 var housesArray= jsondata.houses;
 
 var id_city= 25;
@@ -84,6 +78,7 @@ var pricelower= 0;
 var metersArray= [];
 var buildedmetersArray= [];
 
+//filtrar info por price y id_city
 var filteredHousesArray= housesArray.filter(element =>
     element.id_city=== id_city && pricelower < parseInt(housesArray[i].price.replace("$","").replace(",","")) < priceUpper )
 
