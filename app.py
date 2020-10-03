@@ -85,8 +85,8 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
                                     " INNER JOIN cities ci " +
                                     " ON ho.id_city = ci.id_city" +
                                     " WHERE id_mzone = " +  id_mzone +
-	                                "       AND price >= '" + min_presupuesto + "'"
-                                    "       AND price <= '" + max_presupuesto) + "'"
+	                                "       AND ho.price >= '" + min_presupuesto + "'"+
+                                    "       AND ho.price <= '" + max_presupuesto + "'")
     
     postgreSQL_select_crime = ("SELECT ct.description_type, sum(cd.amount)" +
                                     "  FROM crime_detail cd" +
