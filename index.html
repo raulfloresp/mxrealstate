@@ -9,8 +9,8 @@
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css">
     
 </head>
 <body>
@@ -36,7 +36,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="mapa.html"><img src="assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
                             <!-- Mobile Menu -->
@@ -77,34 +77,30 @@
         <!-- Filtros  -->
         <div class="domain-search-area section-bg1">
            <div class="container">
-               <div class="row">
+               <div class="row align-items-center">
                     <!--Hero form -->                   
                     <div class="col-xl-3 col-sm-12">
-                        <select class="custom-select mr-sm-2" name="option">
-                        <option value="" disabled selected>Ciudad </option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                          </select>
+                        <select class="custom-select mr-sm-2" name="option" id="metZone_combo" onchange="onChangeCityCombo(this.value, false)">
+                            <option value="" disabled selected>Ciudad </option>
+                        </select>
                     </div>
                     <div class="col-xl-3 col-sm-12">
-                        <select class="custom-select mr-sm-2" name="option">
-                        <option value="" disabled selected>Municipio </option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                          </select>
+                        <select class="custom-select mr-sm-2" name="option" id="city_combo">
+                            <option value="" disabled selected>Municipio </option>
+                        </select>
                     </div>
                     <div class="col-xl-3 col-sm-12">
-                        <select class="custom-select mr-sm-2" name="option">
-                        <option value="" disabled selected>Presupuesto </option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                          </select>
+                        <p>
+                            <label for='amount' style="color:white;font-weight:bold;">Presupuesto:</label>
+                            <input type="text" id="amount" readonly style="border:0; color:white; font-weight:bold; background-color:#2482FF;">
+                        </p>
+                        
+                        <div id="slider-range"></div>
+                        <input type="hidden" id="min_amount"/>
+                        <input type="hidden" id="max_amount"/> 
                     </div>
                     <div class="col-auto my-1">
-                        <button type="button" class="btn btn-primary" href="mapa.html" onclick="onClickSubmit()">Comenzar </button>
+                        <button type="button" class="btn btn-primary" onclick="onClickComenzar()">Comenzar </button>
                       </div>
                 </div>
                 </div>
@@ -121,7 +117,7 @@
                         <div class="col-xl-12">
                             <div class="footer-copy-right text-center">
                                <div class="footer-logo mb-25">
-                                <a href="index.html"><img src="assets/img/logo/logo2.png" alt="house hunter logo"></a>
+                                <a href="mapa.html"><img src="assets/img/logo/logo2.png" alt="house hunter logo"></a>
                             </div>
                             <p> Copyright &copy; 2020 This is a website for Data Visualization Bootcamp </a>
                               </div>
@@ -134,10 +130,15 @@
 </footer>
 
 <!-- JS here -->
-<script src="./assets/js/jquery-1.12.4.min.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-<script src="./assets/js/slick.min.js"></script>
-<script src="./assets/js/main.js"></script>
-
+<script src="assets/js/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3-request.v1.min.js"></script>
+<script src="assets/js/d3.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/generalFunctions.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/houses_analysis.js"></script>
+<script src="assets/js/plots.js"></script>  
+<script src="assets/js/multi.js"></script>  
 </body>
 </html>
