@@ -35,7 +35,7 @@ function onClickFiltrar () {
     d3.request(url)
     .header("X-Requested-With", "XMLHttpRequest")
     .get(function(data){
-      metro_zone_obj = JSON.parse(data.response);
+      var metro_zone_obj = JSON.parse(data.response);
     //-----------------------------------       Bar Chart -------------------------------------------------------------------
     var placesArray= metro_zone_obj.places;
     var description_places=[];
