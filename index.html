@@ -9,8 +9,8 @@
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css">
     
 </head>
 <body>
@@ -78,6 +78,39 @@
                 </div>      
             </div>
         </div>
+        <!-- Filtros  -->
+        <div class="domain-search-area section-bg1">
+           <div class="container">
+               <div class="row align-items-center">
+                    <!--Hero form -->                   
+                    <div class="col-xl-3 col-sm-12">
+                        <select class="custom-select mr-sm-2" name="option" id="metZone_combo" onchange="onChangeCityCombo(this.value, false)">
+                            <option value="" disabled selected>Ciudad </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 col-sm-12">
+                        <select class="custom-select mr-sm-2" name="option" id="city_combo">
+                            <option value="" disabled selected>Municipio </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 col-sm-12">
+                        <p>
+                            <label for='amount' style="color:white;font-weight:bold;">Presupuesto:</label>
+                            <input type="text" id="amount" readonly style="border:0; color:white; font-weight:bold; background-color:#2482FF;">
+                        </p>
+                        
+                        <div id="slider-range"></div>
+                        <input type="hidden" id="min_amount"/>
+                        <input type="hidden" id="max_amount"/> 
+                    </div>
+                    <div class="col-auto my-1">
+                        <button type="button" class="btn btn-primary" onclick="onClickComenzar()">Comenzar </button>
+                      </div>
+                </div>
+                </div>
+            </div>
+        </div>
+<!-- Filtros fin -->
     </main>
 <footer>
     <div class="footer-wrappr">
@@ -101,10 +134,15 @@
 </footer>
 
 <!-- JS here -->
-<script src="./assets/js/jquery-1.12.4.min.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-<script src="./assets/js/slick.min.js"></script>
-<script src="./assets/js/main.js"></script>
+<script src="assets/js/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3-request.v1.min.js"></script>
+<script src="assets/js/d3.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/generalFunctions.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/houses_analysis.js"></script>
+<script src="assets/js/multi.js"></script> 
 
 </body>
 </html>

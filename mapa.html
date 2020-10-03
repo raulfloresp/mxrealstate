@@ -8,8 +8,8 @@
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css">
     
 </head>
 <body>
@@ -42,22 +42,18 @@
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">                    
-                                                <li><select class="custom-select mr-sm-2" name="option">
-                                                    <option value="" disabled selected>Ciudad </option>
-                                                        <option value="1">Option 1</option>
-                                                        <option value="2">Option 2</option>
-                                                        <option value="3">Option 3</option>
-                                                      </select>
-                                                    <li><select class="custom-select mr-sm-2" name="option">
-                                                    <option value="" disabled selected>Municipio </option>
-                                                        <option value="1">Option 1</option>
-                                                        <option value="2">Option 2</option>
-                                                        <option value="3">Option 3</option>
-                                                      </select>
-                                                      <li> Presupuesto: <li><form class="multi-range-field my-5 pb-5">
-                                                        <input id="multi8" class="multi-range" type="range" />
-                                                      </form>
-                                                      </li>
+                                                <li><select class="custom-select mr-sm-2" name="option" id="metZone_combo" onchange="onChangeCityCombo(this.value, false)">
+                                                        <option value="" disabled selected>Ciudad </option>
+                                                    </select>
+                                                    <li><select class="custom-select mr-sm-2" name="option" id="city_combo" >
+                                                        <option value="" disabled selected>Municipio </option>
+                                                    </select>
+                                                      <li> Presupuesto:
+                                                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                                        <div id="slider-range"></div>
+                                                        <input type="hidden" id="min_amount"/>
+                                                        <input type="hidden" id="max_amount"/>
+                                                </li>
                                                 <li class="button-header margin-left "><a href="register.html" class="btn">Filtrar </a></li>
                                             </ul>
                                         </nav>
@@ -208,10 +204,14 @@
     </footer>
 
 <!-- JS here -->
-<script src="./assets/js/jquery-1.12.4.min.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-<script src="./assets/js/slick.min.js"></script>
-<script src="./assets/js/main.js"></script>
-<script src="./assets/js/multi.js"></script>  
+<script src="assets/js/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="https://d3js.org/d3-request.v1.min.js"></script>
+<script src="assets/js/d3.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/generalFunctions.js"></script>
+<script src="assets/js/multi.js"></script> 
+<script src="assets/js/mapa.js"></script>  
 </body>
 </html>
