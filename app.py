@@ -86,7 +86,7 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
                                     " INNER JOIN cities ci " +
                                     " ON ho.id_city = ci.id_city" +
                                     " WHERE id_mzone = " +  id_mzone +
-	                                "       AND ho.price >= '" + min_presupuesto + "'" +
+	                                "       AND ho.price >= '" + min_presupuesto + "'"+
                                     "       AND ho.price <= '" + max_presupuesto + "'")
     
     print(postgreSQL_select_houses)
