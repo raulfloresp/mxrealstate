@@ -4,12 +4,26 @@
     <meta charset="utf-8">
     <title> House Hunter </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+  
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="./assets/css/leaflet.extra-markers.min.css">
+  
+    <!--  Our Leaflet CSS -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/leafletstyle.css">
     
 </head>
 <body>
@@ -42,11 +56,8 @@
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">                    
-                                                <li><select class="custom-select mr-sm-2" name="option">
-                                                    <option value="" disabled selected>Ciudad </option>
-                                                        <option value="1">Option 1</option>
-                                                        <option value="2">Option 2</option>
-                                                        <option value="3">Option 3</option>
+                                                <li><select class="custom-select mr-sm-2 City" name="option">
+                                                    <option value="" disabled selected>Ciudad </option>                                                        
                                                       </select>
                                                     <li><select class="custom-select mr-sm-2" name="option">
                                                     <option value="" disabled selected>Municipio </option>
@@ -133,26 +144,7 @@
             <div class="container">
                 <h2>Table </h2>
         <div class="table-responsive">
-          <table class="table table-striped table-sm table-hover">
-            <tbody id="food_table">
-                    <tr>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Age</th>
-                    </tr>
-                    <tr>
-                      <td>Jill</td>
-                      <td>Smith</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                      <td>Eve</td>
-                      <td>Jackson</td>
-                      <td>94</td>
-                    </tr>
-                  </table>
-            </tbody>
-          </table>
+            <table></table>          
         </div>
     </div>
 </div>
@@ -164,10 +156,24 @@
                 <div class="section-tittle section-tittle2 mb-30">
                     <h4>Casa Cathedral Heights </h4>
                 </div>
-                <div class="about-img ">
-                    <img src="https://assets.urbanturf.com/dc/images/blog/2018/08/google-map.jpg"width="600" height="600">
-                </div>
-            </div>
+                <div id="map-container">
+                    <div id="map-id">
+                    </div>
+                  </div>
+                 <style>
+                      #map-container {
+                      position: relative;
+                      height: 600px;
+                      width: 600px;
+                  }
+                  
+                  #map-id {
+                      position: relative;
+                      height: inherit;
+                      width: inherit;
+                  }
+                 </style> 
+                 
             <div class="col-xl-4">
                 <div class="about-caption ">
                     <!-- Section Tittle -->
@@ -208,10 +214,25 @@
     </footer>
 
 <!-- JS here -->
-<script src="./assets/js/jquery-1.12.4.min.js"></script>
 <script src="./assets/js/bootstrap.min.js"></script>
 <script src="./assets/js/slick.min.js"></script>
 <script src="./assets/js/main.js"></script>
-<script src="./assets/js/multi.js"></script>  
+<script src="./assets/js/multi.js"></script>
+<script src="./assets/js/tablescript.js"></script>
+<!-- MomentJS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+crossorigin=""></script>
+
+<!-- Icons -->
+<script src="./assets/js/leaflet.extra-markers.min.js"></script>
+<!-- API Key -->
+<script type="text/javascript" src="./assets/js/config.js"></script>
+
+<!-- Our JavaScript -->
+<script type="text/javascript" src="./assets/js/placesd3.js"></script>    
 </body>
 </html>
