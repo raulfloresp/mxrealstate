@@ -1,1 +1,1 @@
-key = "Accm84$1"
+key = "PostgreSqlKey"
