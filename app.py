@@ -1,7 +1,7 @@
 #################################################
 #                      Imports                  #
 #################################################
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import json
 from flask_cors import CORS
 from config import key as password
@@ -15,7 +15,7 @@ app = Flask(__name__)
 # branch, for local environment set to dev.
 # Note: Make sure to update the 
 #################################################
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     # app.debug = True
@@ -24,7 +24,7 @@ if ENV == 'dev':
     app.config['CORS_HEADERS'] = 'Content-Type'
 else:
     # app.debug = False
-    parameters = f'otra'
+    parameters = f'postgres://rckfecgbjhzqbs:c6a8e20cc6950a3d6cffb277853f5f24209635f4e1297324d3e79c5d41fcef02@ec2-3-210-255-177.compute-1.amazonaws.com:5432/d2t3v6h0hju42m'
 
 # Posgre connection
 engine = create_engine(parameters)
@@ -36,15 +36,7 @@ engine = create_engine(parameters)
 @app.route('/')
 def index():
     ## API Description 
-    return (
-        f"Welcome to houses analysis API!<br/>"
-        f"Available Routes:<br/>"
-        f"/api/v1.0/category<br/>"
-        f"/api/v1.0/nutrients<br/>"
-        f"/api/v1.0/onChangeCategory/idCategory<br/>"
-        f"/api/v1.0/onChangeFood/idCategory<br/>"
-        f"/api/v1.0/onChangeNutrient/idNutrient"
-    )
+    return  render_template('index.html')
 
 @app.route("/metropoli_zone")
 def getMetropolitanAreas():

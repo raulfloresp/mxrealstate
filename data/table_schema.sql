@@ -5,7 +5,7 @@ CREATE TABLE metropolitan_zone (
 	id_mzone SERIAL PRIMARY KEY,
 	description VARCHAR(60) NOT NULL);
 
-SELECT * FROM metropolitan_zone;
+--SELECT * FROM metropolitan_zone;
 
 CREATE TABLE cities (
 	id_city SERIAL PRIMARY KEY,
@@ -18,19 +18,19 @@ CREATE TABLE cities (
 	
 --DROP TABLE cities;
 
-SELECT * FROM cities;
+--SELECT * FROM cities;
 
 CREATE TABLE place_type (
 	id_place_type SERIAL PRIMARY KEY,
 	description_place VARCHAR(100) NOT NULL);
 
-SELECT * FROM place_type;
+--SELECT * FROM place_type;
 
 CREATE TABLE crime_subtype (
 	id_crime_subtype SERIAL PRIMARY KEY,
 	description_subtype VARCHAR(60) NOT NULL);
 
-SELECT * FROM crime_subtype;
+--SELECT * FROM crime_subtype;
 
 CREATE TABLE crime_type (
 	id_crime_type_subtype SERIAL PRIMARY KEY,
@@ -39,7 +39,7 @@ CREATE TABLE crime_type (
 	id_crime_subtype INT,
 	FOREIGN KEY (id_crime_subtype) REFERENCES crime_subtype(id_crime_subtype));
 
-SELECT * FROM crime_type;
+--SELECT * FROM crime_type;
 
 CREATE TABLE crime_detail (
 	id_crime SERIAL PRIMARY KEY,
@@ -53,7 +53,7 @@ CREATE TABLE crime_detail (
 
 --DROP TABLE crime_detail;
 
-SELECT * FROM crime_detail;
+--SELECT * FROM crime_detail;
 
 CREATE TABLE places_of_interest (
 	id_place SERIAL PRIMARY KEY,
@@ -69,7 +69,7 @@ CREATE TABLE places_of_interest (
 
 --DROP TABLE places_of_interest;
 
-SELECT * FROM places_of_interest;
+--SELECT * FROM places_of_interest;
 
 CREATE TABLE houses (
 	id_publicacion SERIAL PRIMARY KEY,
@@ -87,7 +87,7 @@ CREATE TABLE houses (
 	
 --DROP TABLE houses;
 
-SELECT * FROM houses;
+--SELECT * FROM houses;
 
 
 
