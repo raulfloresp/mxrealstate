@@ -73,9 +73,10 @@ def getCities(id_mzone):
 @app.route("/housesCrimePlaces_filter/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto>")
 def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
     resultHousesCrimePlaces = {
-        "houses":[],
+        "houses":[],        
         "crimes":[],
-        "places":[]
+        "places":[],
+        "city_coordinates":[]        
     }
    
     ## Retrieve food descriptions in selected category 
@@ -85,12 +86,10 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
                                     " FROM houses ho " +
                                     " INNER JOIN cities ci " +
                                     " ON ho.id_city = ci.id_city" +
-                                    " WHERE id_mzone = " +  id_mzone +
+                                    " WHERE ho.id_city = " + id_city  +
 	                                "       AND ho.price >= '" + min_presupuesto + "'"+
-                                    "       AND ho.price <= '" + max_presupuesto + "'")
+                                    "       AND ho.price <= '" + max_presupuesto + "'")  
     
-    print(postgreSQL_select_houses)
-
     postgreSQL_select_crime = ("SELECT ct.description_type, sum(cd.amount)" +
                                     "  FROM crime_detail cd" +
 	                                "       INNER JOIN crime_type  ct  " + 
@@ -104,6 +103,13 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
 	                                "       INNER JOIN place_type pt  " + 
                                     "           ON pi.id_place_type = pt.id_place_type" + 
                                     "  WHERE id_city = " + id_city)
+                                    
+
+
+
+    postgreSQL_city_coordinates = ("select city_lat,city_long" +
+                                    "  from cities" +
+                                    "  where id_city = " + id_city)
 
     connection = engine.connect()
     filtered_houses = connection.execute(postgreSQL_select_houses)
@@ -141,15 +147,24 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
         json_places_data["user_rating_total"] = row[5]
         resultHousesCrimePlaces["places"].append(json_places_data)
     
+    filtered_city_coordinates = connection.execute(postgreSQL_city_coordinates)
+    for row in filtered_city_coordinates:
+        json_city_coordinates_data={}
+        json_city_coordinates_data["city_lat"] = row[0]
+        json_city_coordinates_data["city_long"] = row[1]
+        resultHousesCrimePlaces["city_coordinates"].append(json_city_coordinates_data)
+    
+    
     connection.close()
     
     # Return json with descriptions 
     return resultHousesCrimePlaces
 
-@app.route("/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<id_publicacion>")
-def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,id_publicacion):
+@app.route("/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<selected_id_publicacion>")
+def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,selected_id_publicacion):
     resultHousesPrice = {
-        "houses":[],
+        "house":[],
+        "places":[],
         "suggested_price": 0 
     }
    
@@ -160,13 +175,18 @@ def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,id_publicacion):
                                     " FROM houses ho " +
                                     " INNER JOIN cities ci " +
                                     " ON ho.id_city = ci.id_city" +
-                                    " WHERE ho.id_city = " +  id_city +
-	                                "       AND price >= '" + min_presupuesto + "'"
-                                    "       AND price <= '" + max_presupuesto) + "'"
+                                    " WHERE ho.id_publicacion = " +  selected_id_publicacion)
 
-    postgreSQL_select_publicacion = ("SELECT squared_meters,builded_squared_meters  " +
-                                    " FROM houses " +
-                                    " WHERE id_publicacion = " +  id_publicacion )
+    postgreSQL_select_places = ("SELECT pt.description_place, pi.place_name,pi.place_lat," +
+                                    "  pi.place_long,pi.rating,pi.user_rating_total" +
+                                    "  FROM places_of_interest pi" +
+	                                "       INNER JOIN place_type pt  " + 
+                                    "           ON pi.id_place_type = pt.id_place_type" + 
+                                    "  WHERE id_city = " + id_city)
+
+    # postgreSQL_select_publicacion = ("SELECT squared_meters,builded_squared_meters  " +
+    #                                 " FROM houses " +
+    #                                 " WHERE id_publicacion = " +  selected_id_publicacion )
     
     connection = engine.connect()
     filtered_houses = connection.execute(postgreSQL_select_houses)
@@ -184,12 +204,24 @@ def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,id_publicacion):
         json_houses_data["address"] = row[8]
         json_houses_data["price"] = row[9]
         json_houses_data["crime_idx"] = row[10]
-        resultHousesPrice["houses"].append(json_houses_data)
+        resultHousesPrice["house"].append(json_houses_data)
+        filtered_places = connection.execute(postgreSQL_select_places)
+        
+    filtered_places = connection.execute(postgreSQL_select_places)    
+    for row in filtered_places:
+        json_places_data={}
+        json_places_data["description_place"] = row[0]
+        json_places_data["place_name"] = row[1]
+        json_places_data["place_lat"] = row[2]
+        json_places_data["place_long"] = row[3]
+        json_places_data["rating"] = row[4]
+        json_places_data["user_rating_total"] = row[5]
+        resultHousesPrice["places"].append(json_places_data)
 
-    publication_data = connection.execute(postgreSQL_select_publicacion)
-    df_publication_data = pd.DataFrame(publication_data)
+    # publication_data = connection.execute(postgreSQL_select_publicacion)
+    # df_publication_data = pd.DataFrame(publication_data)
 
-    print(df_publication_data)
+    # print(df_publication_data)
     connection.close()
 
     # from tensorflow.keras.models import load_model
