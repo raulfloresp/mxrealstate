@@ -1,7 +1,7 @@
 #################################################
 #                      Imports                  #
 #################################################
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import json
 from flask_cors import CORS
 from config import key as password
@@ -39,11 +39,11 @@ def index():
     return (
         f"Welcome to houses analysis API!<br/>"
         f"Available Routes:<br/>"
-        f"/api/v1.0/category<br/>"
-        f"/api/v1.0/nutrients<br/>"
-        f"/api/v1.0/onChangeCategory/idCategory<br/>"
-        f"/api/v1.0/onChangeFood/idCategory<br/>"
-        f"/api/v1.0/onChangeNutrient/idNutrient"
+        f"/metropoli_zone<br/>"
+        f"/cities/<id_mzone><br/>"
+        f"/housesCrimePlaces_filter/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto><br/>"
+        f"/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<id_publicacion><br/>"
+        
     )
 
 @app.route("/metropoli_zone")
@@ -75,7 +75,7 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
     resultHousesCrimePlaces = {
         "houses":[],
         "crimes":[],
-        "places":[]
+        "places":[],
     }
    
     ## Retrieve food descriptions in selected category 
@@ -104,10 +104,11 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
 	                                "       INNER JOIN place_type pt  " + 
                                     "           ON pi.id_place_type = pt.id_place_type" + 
                                     "  WHERE id_city = " + id_city)
+    
 
     connection = engine.connect()
+    
     filtered_houses = connection.execute(postgreSQL_select_houses)
-        
     for row in filtered_houses:
         json_houses_data={}
         json_houses_data["id_publicacion"] = row[0]
@@ -140,7 +141,8 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
         json_places_data["rating"] = row[4]
         json_places_data["user_rating_total"] = row[5]
         resultHousesCrimePlaces["places"].append(json_places_data)
-    
+
+
     connection.close()
     
     # Return json with descriptions 
@@ -168,6 +170,7 @@ def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,id_publicacion):
                                     " FROM houses " +
                                     " WHERE id_publicacion = " +  id_publicacion )
     
+        
     connection = engine.connect()
     filtered_houses = connection.execute(postgreSQL_select_houses)
         
