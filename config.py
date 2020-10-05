@@ -1,1 +1,1 @@
-key = "API key postgres"
+key = "PostgreSqlKey"

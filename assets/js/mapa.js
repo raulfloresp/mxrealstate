@@ -93,12 +93,14 @@ function onClickFiltrar () {
       var data = [{
         labels: crimes,
         values: crime_count,
+          hole: .4,
         type: "pie"
       }];
 
       var layout = {
         height: 600,
-        width: 600
+        width: 600,
+        showlegend: false
       };
 
       Plotly.newPlot("pie", data, layout);
@@ -108,17 +110,16 @@ function onClickFiltrar () {
     var housesArray= metro_zone_obj.houses;
     console.log(housesArray);
 
-    var id_city= 25;
-    var priceUpper= 2000000;
-    var pricelower= 0;
+    var id_city= selectedCity;
 
+    console.log(housesArray)
     var metersArray= [];
     var buildedmetersArray= [];
 
     //filtrar info por price y id_city
-    var filteredHousesArray= housesArray.filter(element =>
-        element.id_city=== id_city && pricelower < parseInt(housesArray[i].price.replace("$","").replace(",","")) < priceUpper )
+    var filteredHousesArray= housesArray.filter(element => element.id_city== id_city)
 
+    console.log(filteredHousesArray)
     for (var i=0; i < filteredHousesArray.length; i++){
         metersArray.push(filteredHousesArray[i].squared_meters);
         buildedmetersArray.push(filteredHousesArray[i].builded_squared_meters);

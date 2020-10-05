@@ -6,6 +6,7 @@ import json
 from flask_cors import CORS
 from config import key as password
 from sqlalchemy import create_engine
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -80,7 +81,7 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
     ## Retrieve food descriptions in selected category 
     postgreSQL_select_houses = ("SELECT ho.id_publicacion,ho.id_city,ho.house_lat ,ho.house_long, " +
                                     " ho.rooms,ho.bathrooms,ho.squared_meters,ho.builded_squared_meters, " +
-                                    " ho.address, ho.price " +
+                                    " ho.address, ho.price, ci.crime_idx " +
                                     " FROM houses ho " +
                                     " INNER JOIN cities ci " +
                                     " ON ho.id_city = ci.id_city" +
@@ -88,6 +89,8 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
 	                                "       AND ho.price >= '" + min_presupuesto + "'"+
                                     "       AND ho.price <= '" + max_presupuesto + "'")
     
+    print(postgreSQL_select_houses)
+
     postgreSQL_select_crime = ("SELECT ct.description_type, sum(cd.amount)" +
                                     "  FROM crime_detail cd" +
 	                                "       INNER JOIN crime_type  ct  " + 
@@ -117,6 +120,7 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
         json_houses_data["builded_squared_meters"] = row[7]
         json_houses_data["address"] = row[8]
         json_houses_data["price"] = row[9]
+        json_houses_data["crime_idx"] = row[10]
         resultHousesCrimePlaces["houses"].append(json_houses_data)
 
     filtered_crime = connection.execute(postgreSQL_select_crime)
@@ -142,12 +146,60 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
     # Return json with descriptions 
     return resultHousesCrimePlaces
 
-# @app.route("/submitFiltrar/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto>")
-# def getInicializacion(id_mzone,id_city,min_presupuesto,max_presupuesto):
-        
-#     # Rendering mapa.html
-#     return render_template('mapa.html', id_mzone=id_mzone, id_city=id_city, min_presupuesto=min_presupuesto, max_presupuesto=max_presupuesto) 
+@app.route("/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<id_publicacion>")
+def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,id_publicacion):
+    resultHousesPrice = {
+        "houses":[],
+        "suggested_price": 0 
+    }
+   
+    ## Retrieve food descriptions in selected category 
+    postgreSQL_select_houses = ("SELECT ho.id_publicacion,ho.id_city,ho.house_lat ,ho.house_long, " +
+                                    " ho.rooms,ho.bathrooms,ho.squared_meters,ho.builded_squared_meters, " +
+                                    " ho.address, ho.price, ci.crime_idx " +
+                                    " FROM houses ho " +
+                                    " INNER JOIN cities ci " +
+                                    " ON ho.id_city = ci.id_city" +
+                                    " WHERE ho.id_city = " +  id_city +
+	                                "       AND price >= '" + min_presupuesto + "'"
+                                    "       AND price <= '" + max_presupuesto) + "'"
 
+    postgreSQL_select_publicacion = ("SELECT squared_meters,builded_squared_meters  " +
+                                    " FROM houses " +
+                                    " WHERE id_publicacion = " +  id_publicacion )
+    
+    connection = engine.connect()
+    filtered_houses = connection.execute(postgreSQL_select_houses)
+        
+    for row in filtered_houses:
+        json_houses_data={}
+        json_houses_data["id_publicacion"] = row[0]
+        json_houses_data["id_city"] = row[1]
+        json_houses_data["house_lat"] = row[2]
+        json_houses_data["house_long"] = row[3]
+        json_houses_data["rooms"] = row[4]
+        json_houses_data["bathrooms"] = row[5]
+        json_houses_data["squared_meters"] = row[6]
+        json_houses_data["builded_squared_meters"] = row[7]
+        json_houses_data["address"] = row[8]
+        json_houses_data["price"] = row[9]
+        json_houses_data["crime_idx"] = row[10]
+        resultHousesPrice["houses"].append(json_houses_data)
+
+    publication_data = connection.execute(postgreSQL_select_publicacion)
+    df_publication_data = pd.DataFrame(publication_data)
+
+    print(df_publication_data)
+    connection.close()
+
+    # from tensorflow.keras.models import load_model
+    # houses_model = load_model("house_model_trained.h5")
+    
+    # prediction = houses_model.predict(df_publication_data)
+    # resultHousesPrice["suggested_price"] = prediction[0][0]
+
+    # Return json with descriptions 
+    return resultHousesPrice
 
 
 #################################################
