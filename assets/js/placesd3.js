@@ -1,5 +1,5 @@
 function leaflet(importedData){
-  console.log(importedData);
+  
   d3.select("#map-id").remove();
   d3.select("#map-container").append('div').attr('id','map-id');
     var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -99,8 +99,7 @@ function leaflet(importedData){
       })
     };
 
-      // console.log(icons);
-     
+         
       var places = importedData.places;
      
       var houses = importedData.houses;
@@ -164,7 +163,7 @@ function leaflet(importedData){
           // Bind a popup to the marker that will  display on click. This will be rendered as HTML
           newMarker.bindPopup(place.place_name + "<br> Rating: " + place.rating + "<br>" + place.user_rating_total + " Rating count");
         }
-        console.log(placeCount);
+       
         // Call the updateLegend function, which will... update the legend!
         updateLegend(placeCount);
 
@@ -184,7 +183,7 @@ function leaflet(importedData){
   }
 
   function leaflet2(importedData){
-    console.log(importedData.house[0].house_lat);
+    
     d3.select("#map-id-2").remove();
     d3.select("#map-container-2").append('div').attr('id','map-id-2');
       var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -283,8 +282,7 @@ function leaflet(importedData){
           shape: "circle"
         })
       };
-  
-        // console.log(icons);
+ 
        
         var places = importedData.places;
        
@@ -347,7 +345,7 @@ function leaflet(importedData){
             // Bind a popup to the marker that will  display on click. This will be rendered as HTML
             newMarker.bindPopup(place.place_name + "<br> Rating: " + place.rating + "<br>" + place.user_rating_total + " Rating count");
           }
-          console.log(placeCount);
+         
           // Call the updateLegend function, which will... update the legend!
           updateLegend(placeCount);
   

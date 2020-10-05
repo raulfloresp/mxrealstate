@@ -1,12 +1,14 @@
 #################################################
 #                      Imports                  #
 #################################################
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import json
 from flask_cors import CORS
 from config import key as password
 from sqlalchemy import create_engine
 import pandas as pd
+import pickle
+import numpy as np
 
 app = Flask(__name__)
 
@@ -39,11 +41,11 @@ def index():
     return (
         f"Welcome to houses analysis API!<br/>"
         f"Available Routes:<br/>"
-        f"/api/v1.0/category<br/>"
-        f"/api/v1.0/nutrients<br/>"
-        f"/api/v1.0/onChangeCategory/idCategory<br/>"
-        f"/api/v1.0/onChangeFood/idCategory<br/>"
-        f"/api/v1.0/onChangeNutrient/idNutrient"
+        f"/metropoli_zone<br/>"
+        f"/cities/<id_mzone><br/>"
+        f"/housesCrimePlaces_filter/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto><br/>"
+        f"/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<id_publicacion><br/>"
+        
     )
 
 @app.route("/metropoli_zone")
@@ -112,8 +114,8 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
                                     "  where id_city = " + id_city)
 
     connection = engine.connect()
+    
     filtered_houses = connection.execute(postgreSQL_select_houses)
-        
     for row in filtered_houses:
         json_houses_data={}
         json_houses_data["id_publicacion"] = row[0]
@@ -165,7 +167,7 @@ def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,selected_id_public
     resultHousesPrice = {
         "house":[],
         "places":[],
-        "suggested_price": 0 
+        "suggested_price": "" 
     }
    
     ## Retrieve food descriptions in selected category 
@@ -184,10 +186,6 @@ def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,selected_id_public
                                     "           ON pi.id_place_type = pt.id_place_type" + 
                                     "  WHERE id_city = " + id_city)
 
-    # postgreSQL_select_publicacion = ("SELECT squared_meters,builded_squared_meters  " +
-    #                                 " FROM houses " +
-    #                                 " WHERE id_publicacion = " +  selected_id_publicacion )
-    
     connection = engine.connect()
     filtered_houses = connection.execute(postgreSQL_select_houses)
         
@@ -218,17 +216,31 @@ def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,selected_id_public
         json_places_data["user_rating_total"] = row[5]
         resultHousesPrice["places"].append(json_places_data)
 
-    # publication_data = connection.execute(postgreSQL_select_publicacion)
-    # df_publication_data = pd.DataFrame(publication_data)
-
-    # print(df_publication_data)
+    
     connection.close()
 
-    # from tensorflow.keras.models import load_model
-    # houses_model = load_model("house_model_trained.h5")
+    X_to_predict=[int(resultHousesPrice["house"][0]["squared_meters"]),int(resultHousesPrice["house"][0]["builded_squared_meters"]),int(id_city)]
+
+    print(X_to_predict) 
+
+    X_to_predict_numpy = np.asarray(X_to_predict)
+
+    print(X_to_predict_numpy) 
+
+    X_to_predict_reshaped = X_to_predict_numpy.reshape(1,-1) 
+
+    print(X_to_predict_reshaped)
+
     
-    # prediction = houses_model.predict(df_publication_data)
-    # resultHousesPrice["suggested_price"] = prediction[0][0]
+
+    # load_model
+    mty_houses_model = pickle.load(open("scikit_learn_models/mty_model06.pkl", "rb"))
+    
+
+    # Predict suggested price for selected house 
+    prediction = mty_houses_model.predict(X_to_predict_reshaped)
+    print(prediction[0])
+    resultHousesPrice["suggested_price"] = '${:,.2f}'.format(round(prediction[0][0],0))
 
     # Return json with descriptions 
     return resultHousesPrice
