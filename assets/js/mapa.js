@@ -21,10 +21,10 @@ $(document).ready(function () {
     //Populate metropolitam zone and city combos 
     var objId = "metZone_combo";
     populateMetropolitanZone (objId, null);
-    onChangeCityCombo(metropolitan_zone, true);  
+    onChangeCityCombo(metropolitan_zone, true);
+   
 });
-
-
+   
 function onClickFiltrar () {
     selectedMetZone = d3.select("#metZone_combo").property("value");
     selectedCity = d3.select("#city_combo").property("value");
@@ -35,7 +35,7 @@ function onClickFiltrar () {
     d3.request(url)
     .header("X-Requested-With", "XMLHttpRequest")
     .get(function(data){
-      var metro_zone_obj = JSON.parse(data.response);
+      var metro_zone_obj = JSON.parse(data.response); 
     //-----------------------------------       Bar Chart -------------------------------------------------------------------
     var placesArray= metro_zone_obj.places;
     var description_places=[];
@@ -75,7 +75,9 @@ function onClickFiltrar () {
 
             // create the bar chart 
             Plotly.newPlot("bar", data, layout);
-
+    //-------------------------------------Places Map------------------------------------------
+    
+    leaflet(metro_zone_obj);
     //-----------------------------------        Pie Chart -------------------------------------------------------------------
 
     var crimeArray= metro_zone_obj.crimes;
@@ -106,17 +108,18 @@ function onClickFiltrar () {
 
     //-----------------------------------        box plot  -------------------------------------------------------------------
     var housesArray= metro_zone_obj.houses;
+    
 
     var id_city= selectedCity;
 
-    console.log(housesArray)
+    
     var metersArray= [];
     var buildedmetersArray= [];
 
     //filtrar info por price y id_city
     var filteredHousesArray= housesArray.filter(element => element.id_city== id_city)
 
-    console.log(filteredHousesArray)
+    
     for (var i=0; i < filteredHousesArray.length; i++){
         metersArray.push(filteredHousesArray[i].squared_meters);
         buildedmetersArray.push(filteredHousesArray[i].builded_squared_meters);
@@ -142,7 +145,76 @@ function onClickFiltrar () {
       };
       
       // Plot the chart to a div tag with id "plot"
-      Plotly.newPlot("plot", data, layout);      
-    });
+      Plotly.newPlot("plot", data, layout);
+      //-------------------------------------------------------------------TABLE---------------------------------------------
+         
+var tabulate = function (data,columns) {
+  $('.table').DataTable().destroy();
+  d3.select('table').remove();  
+  var table = d3.select('.table-responsive').append('table').attr('class','table table-striped table-sm table-hover')
+    var thead = table.append('thead')
+    var tbody = table.append('tbody')
+
+    thead.append('tr').attr('style','text-align: left;')
+      .selectAll('th')
+        .data(columns)
+        .enter()
+      .append('th')
+        .text(function (d) { return d })
+
+    var rows = tbody.selectAll('tr')
+        .data(data)
+        .enter()
+      .append('tr')
+      .attr('id',d => d.id_publicacion)
+      .attr("onclick", function (d) {
+        return "onclickHouse("+d.id_publicacion+");"
+      })
+      
+      
+
+    var cells = rows.selectAll('td')
+        .data(function(row) {
+            return columns.map(function (column) {
+                return { column: column, value: row[column] }
+          })
+      })
+      .enter()
+    .append('td')
+      .text(function (d) { return d.value })
     
+  return table;
+  
+}
+       var columns = ['address','rooms','bathrooms','squared_meters','builded_squared_meters','price']
+    tabulate(filteredHousesArray,columns)     
+
+      $('.table').DataTable({
+          "columns":[
+              {"data": "address"},
+              {"data": "rooms"},
+              {"data": "bathrooms"},
+              {"data": "squared_meters"},
+              {"data": "builded_squared_meters"},
+              {"data": "price"},
+          ]            
+      });
+    });
+     
+};
+function onclickHouse (id_publicacion) {
+    
+    selectedCity = d3.select("#city_combo").property("value");
+    selectedMin = d3.select("#min_amount").property("value");
+    selectedMax = d3.select("#max_amount").property("value");    
+    url = "http://127.0.0.1:5000/housesPrices_filter/" + selectedCity + "/" + selectedMin + "/" + selectedMax +"/" + id_publicacion
+    d3.request(url)
+    .header("X-Requested-With", "XMLHttpRequest")
+    .get(function(data){
+      var houses_obj = JSON.parse(data.response);
+      console.log(houses_obj)
+      leaflet2(houses_obj)
+
+
+    });
 }
