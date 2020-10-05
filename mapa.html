@@ -99,9 +99,23 @@
                         <div class="section-tittle section-tittle2 mb-30">
                             <h3>Zona Metropolitana de Monterrey</h3>
                         </div>
-                        <div class="about-img">
-                            <img src="https://assets.urbanturf.com/dc/images/blog/2018/08/google-map.jpg"width="600" height="600">
-                        </div>
+                        <div id="map-container">
+                            <div id="map-id">
+                            </div>
+                          </div>
+                         <style>
+                              #map-container {
+                              position: relative;
+                              height: 600px;
+                              width: 600px;
+                          }
+                          
+                          #map-id {
+                              position: relative;
+                              height: inherit;
+                              width: inherit;
+                          }
+                         </style> 
                     </div>
                     <div class="col-xl-6">
                         <div class="about-caption ">
@@ -155,18 +169,18 @@
                 <div class="section-tittle section-tittle2 mb-30">
                     <h4>Casa Cathedral Heights </h4>
                 </div>
-                <div id="map-container">
-                    <div id="map-id">
+                <div id="map-container-2">
+                    <div id="map-id-2">
                     </div>
                   </div>
                  <style>
-                      #map-container {
+                      #map-container-2 {
                       position: relative;
                       height: 600px;
                       width: 600px;
                   }
                   
-                  #map-id {
+                  #map-id-2 {
                       position: relative;
                       height: inherit;
                       width: inherit;
@@ -213,7 +227,6 @@
     </footer>
 
 <!-- JS here -->
-<script src="assets/js/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="https://d3js.org/d3-request.v1.min.js"></script>
@@ -222,7 +235,7 @@
 <script src="assets/js/generalFunctions.js"></script>
 <script src="assets/js/multi.js"></script>
 <script src="assets/js/tablescript.js"></script>
-<script src="assets/js/mapa.js"></script>
+
 <!-- MomentJS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 <!-- Leaflet JavaScript -->
@@ -237,6 +250,6 @@ crossorigin=""></script>
 
 <!-- Our JavaScript -->
 <script type="text/javascript" src="./assets/js/placesd3.js"></script>      
- 
+<script src="assets/js/mapa.js"></script>
 </body>
 </html>
