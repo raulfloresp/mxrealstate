@@ -38,15 +38,7 @@ engine = create_engine(parameters)
 @app.route('/')
 def index():
     ## API Description 
-    return (
-        f"Welcome to houses analysis API!<br/>"
-        f"Available Routes:<br/>"
-        f"/metropoli_zone<br/>"
-        f"/cities/<id_mzone><br/>"
-        f"/housesCrimePlaces_filter/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto><br/>"
-        f"/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<id_publicacion><br/>"
-        
-    )
+    return render_template("index.html")
 
 @app.route("/metropoli_zone")
 def getMetropolitanAreas():
