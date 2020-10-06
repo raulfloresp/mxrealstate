@@ -254,4 +254,4 @@ def getSuggestedPrice(id_mzone,id_city,min_presupuesto,max_presupuesto,selected_
 #                    Run App                    #
 #################################################
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
