@@ -3,38 +3,38 @@ var id_city;
 var min_presupuesto; 
 var max_presupuesto; 
 
-// on Maps page load
-$(document).ready(function () {
+// // on Maps page load
+// $(document).ready(function () {
     
-    //Get the values selected by the user in index.html from the URL 
-    // getQueryParams is a builded funtion in generalFunctions.js 
-    min_presupuesto = getQueryParams("min");
-    max_presupuesto = getQueryParams("max");
-    metropolitan_zone = getQueryParams("z");
+//     //Get the values selected by the user in index.html from the URL 
+//     // getQueryParams is a builded funtion in generalFunctions.js 
+//     min_presupuesto = getQueryParams("min");
+//     max_presupuesto = getQueryParams("max");
+//     metropolitan_zone = getQueryParams("z");
 
-    // populate range slider info
-    if(min_presupuesto == null){
-      min_presupuesto = "$800,000";
-    }
+//     // populate range slider info
+//     if(min_presupuesto == null){
+//       min_presupuesto = "$800,000";
+//     }
 
-    if(max_presupuesto == null){
-      max_presupuesto = "$2,000,000";
-    }
+//     if(max_presupuesto == null){
+//       max_presupuesto = "$2,000,000";
+//     }
 
-    document.getElementById("min_amount").value = min_presupuesto;
-    document.getElementById("max_amount").value = max_presupuesto;
-    $( "#amount" ).val(min_presupuesto + " - " + max_presupuesto );
-    $("#slider-range").slider('values',0,min_presupuesto.replace('$','').replace(/,/g,''));
-    $("#slider-range").slider('values',1, max_presupuesto.replace('$','').replace(/,/g,''));
+//     document.getElementById("min_amount").value = min_presupuesto;
+//     document.getElementById("max_amount").value = max_presupuesto;
+//     $( "#amount" ).val(min_presupuesto + " - " + max_presupuesto );
+//     $("#slider-range").slider('values',0,min_presupuesto.replace('$','').replace(/,/g,''));
+//     $("#slider-range").slider('values',1, max_presupuesto.replace('$','').replace(/,/g,''));
 
-    //Populate metropolitam zone and city combos 
-    var objId = "metZone_combo";
+//     //Populate metropolitam zone and city combos 
+//     var objId = "metZone_combo";
 
-    // populateMetropolitanZone() and onChangeCityCombo() are builded funtions in generalFunctions.js
-    populateMetropolitanZone (objId, null);
-    onChangeCityCombo(metropolitan_zone, true);
+//     // populateMetropolitanZone() and onChangeCityCombo() are builded funtions in generalFunctions.js
+//     populateMetropolitanZone (objId, null);
+//     onChangeCityCombo(metropolitan_zone, true);
    
-});
+// });
    
 function onClickFiltrar () {
   selectedMetZone = d3.select("#metZone_combo").property("value");

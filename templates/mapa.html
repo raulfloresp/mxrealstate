@@ -1,9 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <title> House Hunter </title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> House Hunter 2 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -15,22 +19,24 @@
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/animate.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
-    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-    crossorigin=""/>
-  
+        integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+
     <!-- Icons -->
     <link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../static/css/leaflet.extra-markers.min.css">
-  
+
     <!--  Our Leaflet CSS -->
     <link rel="stylesheet" type="text/css" href="../static/css/leafletstyle.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css">
-    
+
 </head>
+
 <body>
     <!-- ? Preloader Start -->
     <div id="preloader-active">
@@ -43,43 +49,21 @@
             </div>
         </div>
     </div>
-    <header>        
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
         <div class="header-area header-transparent">
             <div class="main-header ">
-                <div class="header-bottom">
+                <div class="header-bottom ">
                     <div class="container-fluid">
                         <div class="row align-items-center">
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="../static/img/logo/logo2.png" alt=""></a>
+                                    <a href="mapa.html"><img src="../static/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
-                            <div class="col-xl-10 col-lg-10">
-                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
-                                    <!-- Main-menu -->
-                                    <div class="main-menu d-none d-lg-block">
-                                        <nav>
-                                            <ul id="navigation">                    
-                                                <li><select class="custom-select mr-sm-2" name="option" id="metZone_combo" onchange="onChangeCityCombo(this.value, false)">
-                                                        <option value="" disabled selected>Ciudad </option>
-                                                    </select></li>
-                                                    <li><select class="custom-select mr-sm-2" name="option" id="city_combo" >
-                                                        <option value="" disabled selected>Municipio </option>
-                                                    </select></li>
-                                                      <li> Presupuesto:
-                                                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                                                        <div id="slider-range"></div>
-                                                        <input type="hidden" id="min_amount"/>
-                                                        <input type="hidden" id="max_amount"/>
-                                                </li>
-                                                <li class="button-header margin-left "><a class="btn" onclick="onClickFiltrar()">Filtrar </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div> 
+                            <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
@@ -88,168 +72,243 @@
                 </div>
             </div>
         </div>
+        <!-- Header End -->
     </header>
     <main>
-        <!--? About-1 Area Start -->
-        <div class="about-area1 section-padding40">
-            <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-xl-6 ">
-                        <!-- about-img -->
-                        <div class="section-tittle section-tittle2 mb-30">
-                            <h3 id= "titulo_Mapa1">Zona Metropolitana de Monterrey</h3>
-                        </div>
-                        <div id="map-container">
-                            <div id="map-id">
+        <!-- Slider Area Start-->
+        <div class="slider-area slider-bg ">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider d-flex align-items-center slider-height ">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-xl-5 col-lg-5 col-md-9 ">
+                                <div class="hero__caption">
+                                    <h1 data-animation="fadeInLeft" data-delay=".6s"> Tu nuevo hogar al precio correcto
+                                    </h1>
+                                    <p data-animation="fadeInLeft" data-delay=".8s"> Encuentra la casa adecuada a ti y
+                                        nosotros te decimos cuánto debes ofrecer. </p>
+                                </div>
                             </div>
-                          </div>
-                         <style>
-                              #map-container {
-                              position: relative;
-                              height: 600px;
-                              width: 600px;
-                          }
-                          
-                          #map-id {
-                              position: relative;
-                              height: inherit;
-                              width: inherit;
-                          }
-                         </style> 
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="about-caption ">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle section-tittle2 mb-30">
-                                <h3 id= "titulo_pie"> Distribución de crímenes en tu municipio </h3>
-                                <div id="pie"></div>
-                            </div> 
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="hero__img d-none d-lg-block f-right">
+                                    <img src="../static/img/hero_right.png" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="about-area1 section-padding">
+        <!-- Filtros  -->
+        <div class="domain-search-area">
             <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-xl-6 ">
-                        <!-- about-img -->
-                        <div class="section-tittle section-tittle2 mb-30">
-                            <h3 id="titulo_box">Distribución de metros cuadrados en tu presupuesto </h3>
-                            <div id="plot"></div>
+                <div class="row align-items-center">
+                    <div class="col-12"></div>
+                </div>
+                <div class="row align-items-center">
+                    <!--Hero form -->
+                    <div class="col-xl-3 col-sm-12">
+                        <select class="custom-select mr-sm-2" name="option" id="metZone_combo"
+                            onchange="onChangeCityCombo(this.value, false)">
+                            <option value="" disabled selected>Ciudad </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 col-sm-12">
+                        <select class="custom-select mr-sm-2" name="option" id="city_combo">
+                            <option value="" disabled selected>Municipio </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 col-sm-12">
+                        <p>
+                            <label for='amount' style=" color:black; font-weight:bold;">Presupuesto:</label>
+                            <input type="text" id="amount" readonly
+                                style="border:0; font-weight:bold; ">
+                        </p>
+
+                        <div id="slider-range"></div>
+                        <input type="hidden" id="min_amount" />
+                        <input type="hidden" id="max_amount" />
+                    </div>
+                    <div class="col-auto my-1">
+                        <a class="btn" onclick="onClickFiltrar()">Filtrar </a>
+                        <!-- <button type="button" class="btn btn-primary" onclick="onClickComenzar()">Comenzar </button> -->
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <!--? About-1 Area Start -->
+                    <div class="about-area1 section-padding40">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-xl-6 ">
+                                    <!-- about-img -->
+                                    <div class="section-tittle section-tittle2 mb-30">
+                                        <h3 id="titulo_Mapa1">Zona Metropolitana de Monterrey</h3>
+                                    </div>
+                                    <div id="map-container">
+                                        <div id="map-id">
+                                        </div>
+                                    </div>
+                                    <style>
+                                        #map-container {
+                                            position: relative;
+                                            height: 600px;
+                                            width: 600px;
+                                        }
+
+                                        #map-id {
+                                            position: relative;
+                                            height: inherit;
+                                            width: inherit;
+                                        }
+                                    </style>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="about-caption ">
+                                        <!-- Section Tittle -->
+                                        <div class="section-tittle section-tittle2 mb-30">
+                                            <h3 id="titulo_pie"> Distribución de crímenes en tu municipio </h3>
+                                            <div id="pie"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xl-6">
-                        <div class="about-caption ">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle section-tittle2 mb-30">
-                                <h3 id="titulo_bar"> Lugares turísticos disponibles en tu municipio </h3>
-                                <div id="bar"></div>
-                            </div> 
+                    <div class="about-area1 section-padding">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-xl-6 ">
+                                    <!-- about-img -->
+                                    <div class="section-tittle section-tittle2 mb-30">
+                                        <h3 id="titulo_box">Distribución de metros cuadrados en tu presupuesto </h3>
+                                        <div id="plot"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="about-caption ">
+                                        <!-- Section Tittle -->
+                                        <div class="section-tittle section-tittle2 mb-30">
+                                            <h3 id="titulo_bar"> Lugares turísticos disponibles en tu municipio </h3>
+                                            <div id="bar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- About-1 Area End -->
-        <h2 id="nut_fact_header"></h2>
-        <div class="about-area1 pb-bottom">
-            <div class="container">
-                <h2 id="titulo_table">Table </h2>
-        <div class="table-responsive">
-            <table></table>          
-        </div>
-    </div>
-</div>
-<div class="about-area1 section-padding40">
-    <div class="container">
-        <div class="row align-items-center justify-content-between">
-            <div class="col-xl-6 ">
-                <!-- about-img -->
-                <div class="section-tittle section-tittle2 mb-30">
-                    <h4 id="titulo_Mapa2">Selected House Location </h4>
-                </div>
-                <div id="map-container-2">
-                    <div id="map-id-2">
+                    <!-- About-1 Area End -->
+                    <h2 id="nut_fact_header"></h2>
+                    <div class="about-area1 pb-bottom">
+                        <div class="container">
+                            <h2 id="titulo_table">Table </h2>
+                            <div class="table-responsive">
+                                <table></table>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                 <style>
-                      #map-container-2 {
-                      position: relative;
-                      height: 600px;
-                      width: 600px;
-                  }
-                  
-                  #map-id-2 {
-                      position: relative;
-                      height: inherit;
-                      width: inherit;
-                  }
-                 </style> 
-            </div>
-            <div class="col-xl-6" style="padding: 50px;">
-                <div class="about-caption ">
-                    <!-- Section Tittle -->
-                    <div class="section-tittle section-tittle2 mb-30" >
-                        <h3> Precio publicado: </h3>
-                    </div> 
-                    <a href="#" class="btn"><i class="fas fa-phone-alt" id="precio_publicado" ></i> </a>
-                    <hr>
-                    <div class="section-tittle section-tittle2 mb-30" >
-                        <h3> Precio sugerido de compra: </h3>
-                    </div> 
-                    <a href="#" class="btn"><i class="fas fa-phone-alt" id="precio_sugerido" ></i></a>
+                    <div class="about-area1 section-padding40">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-xl-6 ">
+                                    <!-- about-img -->
+                                    <div class="section-tittle section-tittle2 mb-30">
+                                        <h4 id="titulo_Mapa2">Selected House Location </h4>
+                                    </div>
+                                    <div id="map-container-2">
+                                        <div id="map-id-2">
+                                        </div>
+                                    </div>
+                                    <style>
+                                        #map-container-2 {
+                                            position: relative;
+                                            height: 600px;
+                                            width: 600px;
+                                        }
+
+                                        #map-id-2 {
+                                            position: relative;
+                                            height: inherit;
+                                            width: inherit;
+                                        }
+                                    </style>
+                                </div>
+                                <div class="col-xl-6" style="padding: 80px;">
+                                    <div class="about-caption ">
+                                        <!-- Section Tittle -->
+                                        <div class="section-tittle section-tittle2 mb-30">
+                                            <h3> Precio publicado: </h3>
+                                        </div>
+                                        <a href="#" class="btn"><i class="fas fa-phone-alt" id="precio_publicado"></i>
+                                        </a>
+                                        <hr>
+                                        <div class="section-tittle section-tittle2 mb-30">
+                                            <h3> Precio sugerido de compra: </h3>
+                                        </div>
+                                        <a href="#" class="btn"><i class="fas fa-phone-alt"
+                                                id="precio_sugerido"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- About-2 Area End -->
                 </div>
             </div>
         </div>
-    </div>
-</div>
-        <!-- About-2 Area End -->
+        </div>
+        <!-- Filtros fin -->
+    </main>
     <footer>
-        <div class="footer-wrappr ">
+        <div class="footer-wrappr">
             <div class="footer-bottom-area">
                 <div class="container">
                     <div class="footer-border">
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="footer-copy-right text-center">
-                                   <div class="footer-logo mb-25">
-                                    <a href="index.html"><img src="../static/img/logo/logo2.png" alt="house hunter logo"></a>
+                                    <div class="footer-logo mb-25">
+                                        <a href="mapa.html"><img src="../static/img/logo/logo2.png"
+                                                alt="house hunter logo"></a>
+                                    </div>
+                                    <p> Copyright &copy; 2020 This is a website for Data Visualization Bootcamp </a>
                                 </div>
-                                <p> Copyright &copy; 2020 This is a website for Data Visualization Bootcamp </a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
-<!-- MomentJS -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <!-- MomentJS -->
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 
-<!-- Leaflet JavaScript -->
-<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-crossorigin=""></script>
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+        integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
 
-<!-- Icons -->
-<script src="../static/js/leaflet.extra-markers.min.js"></script>
+    <!-- Icons -->
+    <script src="../static/js/leaflet.extra-markers.min.js"></script>
 
-<!-- API Key -->
-<script type="text/javascript" src="../static/js/config.js"></script>
+    <!-- API Key -->
+    <script type="text/javascript" src="../static/js/config.js"></script>
 
-<!-- JS here -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="https://d3js.org/d3-request.v1.min.js"></script>
-<script src="../static/js/d3.min.js"></script>
-<script src="../static/js/main.js"></script>
-<script src="../static/js/generalFunctions.js"></script>
-<script src="../static/js/multi.js"></script>
-<script type="text/javascript" src="../static/js/placesd3.js"></script>      
-<script src="../static/js/mapa.js"></script>
-
+    <!-- JS here -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3-request.v1.min.js"></script>
+    <script src="../static/js/d3.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/generalFunctions.js"></script>
+    <script src="../static/js/houses_analysis.js"></script>
+    <script src="../static/js/multi.js"></script>
+    <script type="text/javascript" src="../static/js/placesd3.js"></script>
+    <script src="../static/js/mapa.js"></script>
+    
 </body>
+
 </html>
