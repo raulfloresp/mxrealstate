@@ -1,5 +1,5 @@
 function leaflet(importedData){
-  console.log(importedData);
+  
   d3.select("#map-id").remove();
   d3.select("#map-container").append('div').attr('id','map-id');
     var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -99,8 +99,7 @@ function leaflet(importedData){
       })
     };
 
-      // console.log(icons);
-     
+         
       var places = importedData.places;
      
       var houses = importedData.houses;
@@ -164,7 +163,7 @@ function leaflet(importedData){
           // Bind a popup to the marker that will  display on click. This will be rendered as HTML
           newMarker.bindPopup(place.place_name + "<br> Rating: " + place.rating + "<br>" + place.user_rating_total + " Rating count");
         }
-        console.log(placeCount);
+       
         // Call the updateLegend function, which will... update the legend!
         updateLegend(placeCount);
 
@@ -183,7 +182,53 @@ function leaflet(importedData){
     }
   };
 
-function leaflet2(importedData){
+  function leaflet2(importedData){
+    
+    d3.select("#map-id-2").remove();
+    d3.select("#map-container-2").append('div').attr('id','map-id-2');
+      var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+      maxZoom: 18,
+      id: "light-v10",
+      accessToken: API_KEY
+    });
+    // Initialize all of the LayerGroups we'll be using
+    var layers = {
+        University: new L.LayerGroup(),
+        School: new L.LayerGroup(),
+        Restaurant: new L.LayerGroup(),
+        Shopping_Mall: new L.LayerGroup(),
+        Convenience_Store: new L.LayerGroup(),
+        House: new L.LayerGroup()
+        
+      };
+    // Create the map with our layers
+    var map = L.map("map-id-2", {
+        center: [importedData.house[0].house_lat, importedData.house[0].house_long],
+        zoom: 14,
+        layers: [
+          layers.University,
+          layers.School,
+          layers.Restaurant,
+          layers.Shopping_Mall,
+          layers.Convenience_Store,
+          layers.House
+        ]
+      });
+    // Add our 'lightmap' tile layer to the map
+    lightmap.addTo(map);
+  
+    // Create an overlays object to add to the layer control
+    var overlays = {
+        "Universities": layers.University,
+        "School": layers.School,
+        "Restaurants": layers.Restaurant,
+        "Shopping Malls": layers.Shopping_Mall,
+        "Convenience Store": layers.Convenience_Store,
+        "House": layers.House
+      };
+    // Create a control for our layers, add our overlay layers to it
+    L.control.layers(null, overlays).addTo(map);
   
   d3.select("#map-id-2").remove();
   d3.select("#map-container-2").append('div').attr('id','map-id-2');
@@ -298,7 +343,11 @@ function leaflet2(importedData){
           Shopping_Mall: 0,
           Convenience_Store: 0,
       };
-      
+ 
+       
+        var places = importedData.places;
+       
+        var house = importedData.house[0];
         
         // Create a new marker with the appropriate icon and coordinates
         var houseMarker = L.marker([house.house_lat, house.house_long], {
