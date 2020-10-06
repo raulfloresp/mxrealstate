@@ -42,6 +42,7 @@ function onClickFiltrar () {
 
     //-------------------------------------Places Map------------------------------------------
     // Builded function in placesd3.js
+    d3.select("#titulo_Mapa1").text("Casas dentro de tu presupuesto en " + d3.select("#city_combo option:checked").text());
     leaflet(metro_zone_obj);
 
     //-----------------------------------       Bar Chart -------------------------------------------------------------------
@@ -49,6 +50,8 @@ function onClickFiltrar () {
     var description_places=[];
     var description_count=[];
     
+    d3.select("#titulo_bar").text("Lugares de interes en " + d3.select("#city_combo option:checked").text());
+
     for (var i=0 ;i < placesArray.length; i++){
         var current= placesArray[i].description_place;
         if (description_places.includes(current)){
@@ -90,6 +93,8 @@ function onClickFiltrar () {
     
     var crime_count=[];
     var crimes=[];
+    
+    d3.select("#titulo_pie").text("Distribución de crímenes en  " + d3.select("#city_combo option:checked").text());
 
     for (var i=0 ;i < crimeArray.length; i++){
         crimes.push(crimeArray[i].description_type);
@@ -122,6 +127,8 @@ function onClickFiltrar () {
     var metersArray= [];
     var buildedmetersArray= [];
 
+    d3.select("#titulo_box").text("Distribución de metros cuadros para casas dentro de tu presupuesto en  " + d3.select("#city_combo option:checked").text());
+    
     //filtrar info por price y id_city
     var filteredHousesArray= housesArray.filter(element => element.id_city== id_city)
 
@@ -135,12 +142,13 @@ function onClickFiltrar () {
     var trace1 = {
         y:metersArray,
         type: 'box',
-        name: 'Set 1'
+        name: 'square meters'
       };
       
       var trace2 = {
         y: buildedmetersArray,
-        type: 'box'
+        type: 'box',
+        name: 'build square meters'
       };
 
       var data = [trace1, trace2];
@@ -153,7 +161,9 @@ function onClickFiltrar () {
     // Plot the chart to a div tag with id "plot"
     Plotly.newPlot("plot", data, layout);
     //-------------------------------------------------------------------TABLE---------------------------------------------
-        
+    
+    d3.select("#titulo_table").text("Lista de casas dentro de tu presupuesto en " + d3.select("#city_combo option:checked").text());
+    
     var tabulate = function (data,columns) {
       $('.table').DataTable().destroy();
       d3.select('table').remove();  
@@ -209,11 +219,11 @@ function onClickFiltrar () {
 };
 
 function onclickHouse (id_publicacion) {
-    
+  selectedMetZone = d3.select("#metZone_combo").property("value");  
   selectedCity = d3.select("#city_combo").property("value");
   selectedMin = d3.select("#min_amount").property("value");
   selectedMax = d3.select("#max_amount").property("value");    
-  url = "http://127.0.0.1:5000/housesPrices_filter/" + selectedCity + "/" + selectedMin + "/" + selectedMax +"/" + id_publicacion
+  url = "http://127.0.0.1:5000/housesPrices_filter/" + selectedMetZone + "/" + selectedCity + "/" + selectedMin + "/" + selectedMax +"/" + id_publicacion
   d3.request(url)
   .header("X-Requested-With", "XMLHttpRequest")
   .get(function(data){
@@ -221,6 +231,7 @@ function onclickHouse (id_publicacion) {
     
     console.log(houses_obj)
     // Builded function in placesd3.js
+    d3.select("#titulo_Mapa2").text("Casa seleccionada en " + d3.select("#city_combo option:checked").text());
     leaflet2(houses_obj)
     
     // Show the price for the selected house 
