@@ -222,20 +222,20 @@ def getSuggestedPrice(id_mzone,id_city,min_presupuesto,max_presupuesto,selected_
     # Get the suggested priced by using a Scikit-Learn linear regression
     
     # Building the array for the prediction 
-    X_to_predict=[int(resultHousesPrice["house"][0]["squared_meters"]),int(resultHousesPrice["house"][0]["builded_squared_meters"]),int(id_city)]
+    X_to_predict=[int(resultHousesPrice["house"][0]["builded_squared_meters"]),int(resultHousesPrice["house"][0]["squared_meters"]),int(id_city)]
 
     X_to_predict_numpy = np.asarray(X_to_predict)
 
     X_to_predict_reshaped = X_to_predict_numpy.reshape(1,-1) 
 
-   # Choosing the model to use 
-   if int(id_mzone) == 1:
-        route_model = "scikit_learn_models/cd_mx_model03.pkl"
+    # Choosing the model to use 
+    if int(id_mzone) == 1:
+            route_model = "scikit_learn_models/cd_mx_model03.pkl"
     elif int(id_mzone) == 2:
-        route_model = "scikit_learn_models/mty_model06.pkl"
+            route_model = "scikit_learn_models/mty_model06.pkl"
     else:
-        route_model = "scikit_learn_models/gdl_model09.pkl"
-
+            route_model = "scikit_learn_models/gdl_model09.pkl"
+   
     # load_model
     mty_houses_model = pickle.load(open(route_model, "rb"))
     
