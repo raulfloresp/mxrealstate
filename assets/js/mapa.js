@@ -206,19 +206,17 @@ function onClickFiltrar () {
     tabulate(filteredHousesArray,columns)     
 
       $('.table').DataTable({
-          "columns":[
-              {"data": "address"},
-              {"data": "rooms"},
-              {"data": "bathrooms"},
-              {"data": "squared_meters"},
-              {"data": "builded_squared_meters"},
-              {"data": "price"},
-          ]            
+           select: true            
       });
   });
 };
+function highlightRow (id_publicacion) {    
+  $('tr').removeClass('selected');
+  $("#"+id_publicacion).addClass('selected'); 
+}
 
 function onclickHouse (id_publicacion) {
+  highlightRow(id_publicacion);
   selectedMetZone = d3.select("#metZone_combo").property("value");  
   selectedCity = d3.select("#city_combo").property("value");
   selectedMin = d3.select("#min_amount").property("value");

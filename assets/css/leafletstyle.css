@@ -6,7 +6,7 @@ body,
   margin: 0;
 }
 
-.legend {
+.legend, .legend-2 {
   padding: 10px;
   font-family: Sanchez, serif;
   font-size: 16px;
@@ -18,26 +18,25 @@ body,
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.legend .shopping_mall{
+.shopping_mall{
   color: #ec8a2e;
 }
 
-.legend .school {
+.school {
   color: #a0353a;
 }
-
-.legend .university {
+.university {
   color: #f4ba48;
 }
 
-.legend .convenience_store {
+.convenience_store {
   color: #1b904f;
 }
 
-.legend .restaurant {
+.restaurant {
   color: #007dff;
 }
 
-.legend .houses {
+.houses {
   color: #a200ff
 }
