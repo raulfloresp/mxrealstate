@@ -26,7 +26,7 @@ if ENV == 'dev':
     app.config['CORS_HEADERS'] = 'Content-Type'
 else:
     # app.debug = False
-    parameters = f'otra'
+    parameters = f'postgres://rckfecgbjhzqbs:c6a8e20cc6950a3d6cffb277853f5f24209635f4e1297324d3e79c5d41fcef02@ec2-3-210-255-177.compute-1.amazonaws.com:5432/d2t3v6h0hju42m'
 
 # Posgre connection
 engine = create_engine(parameters)
