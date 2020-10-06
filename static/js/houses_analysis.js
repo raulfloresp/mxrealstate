@@ -10,6 +10,7 @@ function onClickComenzar () {
   
  // URL Dev environment
   // url = "../templates/mapa.html?z=" + selectedIdMetZone + "&c=" + selectedIdCity + "&min="  + selectedPresupuestoMin + "&max=" + selectedPresupuestoMax;
+  
   // URL production environment 
   url = "mapa.html?z=" + selectedIdMetZone + "&c=" + selectedIdCity + "&min="  + selectedPresupuestoMin + "&max=" + selectedPresupuestoMax;
   
