@@ -17,7 +17,7 @@ app = Flask(__name__)
 # branch, for local environment set to dev.
 # Note: Make sure to update the 
 #################################################
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
     parameters = f'postgresql+psycopg2://postgres:{password}@localhost:5432/houses'
@@ -37,22 +37,7 @@ engine = create_engine(parameters)
 def index():
     ## API Description 
     return render_template("mapa.html")
-    # return (
     
-    #     f"Welcome to houses analysis API!<br/>"
-    #     f"Available Routes:<br/>"
-    #     f"/metropoli_zone<br/>"
-    #     f"/cities/<id_mzone><br/>"
-    #     f"/housesCrimePlaces_filter/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto><br/>"
-    #     f"/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<id_publicacion><br/>"
-        
-    # )
-
-# @app.route('/comenzar/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto>')
-# def mapa(id_mzone,id_city,min_presupuesto,max_presupuesto):
-#     ## API Description 
-#     return render_template("mapa.html", id_mzone=id_mzone, id_city=id_city,min_presupuesto=min_presupuesto,max_presupuesto=max_presupuesto)
-
 @app.route("/metropoli_zone")
 def getMetropolitanAreas():
     ## Retrieve metropolitan zones data 
