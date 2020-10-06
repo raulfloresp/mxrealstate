@@ -13,6 +13,12 @@ function onClickComenzar () {
   // URL production environment 
   url = "mapa.html?z=" + selectedIdMetZone + "&c=" + selectedIdCity + "&min="  + selectedPresupuestoMin + "&max=" + selectedPresupuestoMax;
   
+  // aqui mandar llamar endpoint comenzar y comentar la linea de abajo
   window.location= url;
-  
+
+  // url = "http://127.0.0.1:5000/comenzar/" + selectedMetZone + "/" + selectedCity + "/" + selectedMin + "/" + selectedMax
+  // d3.request(url)
+  // .header("X-Requested-With", "XMLHttpRequest")
+  // .post();  
+
 }
