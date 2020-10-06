@@ -162,8 +162,8 @@ def getHousesCrimePlaces(id_mzone,id_city,min_presupuesto,max_presupuesto):
     # Return json with descriptions 
     return resultHousesCrimePlaces
 
-@app.route("/housesPrices_filter/<id_city>/<min_presupuesto>/<max_presupuesto>/<selected_id_publicacion>")
-def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,selected_id_publicacion):
+@app.route("/housesPrices_filter/<id_mzone>/<id_city>/<min_presupuesto>/<max_presupuesto>/<selected_id_publicacion>")
+def getSuggestedPrice(id_mzone,id_city,min_presupuesto,max_presupuesto,selected_id_publicacion):
     resultHousesPrice = {
         "house":[],
         "places":[],
@@ -219,22 +219,25 @@ def getSuggestedPrice(id_city,min_presupuesto,max_presupuesto,selected_id_public
     
     connection.close()
 
+    # Get the suggested priced by using a Scikit-Learn linear regression
+    
+    # Building the array for the prediction 
     X_to_predict=[int(resultHousesPrice["house"][0]["squared_meters"]),int(resultHousesPrice["house"][0]["builded_squared_meters"]),int(id_city)]
-
-    print(X_to_predict) 
 
     X_to_predict_numpy = np.asarray(X_to_predict)
 
-    print(X_to_predict_numpy) 
-
     X_to_predict_reshaped = X_to_predict_numpy.reshape(1,-1) 
 
-    print(X_to_predict_reshaped)
-
-    
+   # Choosing the model to use 
+   if int(id_mzone) == 1:
+        route_model = "scikit_learn_models/cd_mx_model03.pkl"
+    elif int(id_mzone) == 2:
+        route_model = "scikit_learn_models/mty_model06.pkl"
+    else:
+        route_model = "scikit_learn_models/gdl_model09.pkl"
 
     # load_model
-    mty_houses_model = pickle.load(open("scikit_learn_models/mty_model06.pkl", "rb"))
+    mty_houses_model = pickle.load(open(route_model, "rb"))
     
 
     # Predict suggested price for selected house 
