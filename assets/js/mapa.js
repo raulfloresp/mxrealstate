@@ -13,6 +13,14 @@ $(document).ready(function () {
     metropolitan_zone = getQueryParams("z");
 
     // populate range slider info
+    if(min_presupuesto == null){
+      min_presupuesto = "$800,000";
+    }
+
+    if(max_presupuesto == null){
+      max_presupuesto = "$2,000,000";
+    }
+
     document.getElementById("min_amount").value = min_presupuesto;
     document.getElementById("max_amount").value = max_presupuesto;
     $( "#amount" ).val(min_presupuesto + " - " + max_presupuesto );
