@@ -8,9 +8,8 @@ function onClickComenzar () {
   selectedPresupuestoMin = d3.select("#min_amount").property("value");
   selectedPresupuestoMax = d3.select("#max_amount").property("value");
   
-  url = "../mapa.html?z=" + selectedIdMetZone + "&c=" + selectedIdCity + "&min="  + selectedPresupuestoMin + "&max=" + selectedPresupuestoMax;
+  url = "../templates/mapa.html?z=" + selectedIdMetZone + "&c=" + selectedIdCity + "&min="  + selectedPresupuestoMin + "&max=" + selectedPresupuestoMax;
   
-
   window.location= url;
   
 }
