@@ -168,9 +168,7 @@ var tabulate = function (data,columns) {
       .append('tr')
       .attr('id',d => d.id_publicacion)
       .attr("onclick", function (d) {
-        return "onclickHouse("+d.id_publicacion+");"
-      })
-      
+        return "onclickHouse("+d.id_publicacion+");"});
       
 
     var cells = rows.selectAll('td')
@@ -190,20 +188,18 @@ var tabulate = function (data,columns) {
     tabulate(filteredHousesArray,columns)     
 
       $('.table').DataTable({
-          "columns":[
-              {"data": "address"},
-              {"data": "rooms"},
-              {"data": "bathrooms"},
-              {"data": "squared_meters"},
-              {"data": "builded_squared_meters"},
-              {"data": "price"},
-          ]            
+           select: true            
       });
     });
      
 };
+function highlightRow (id_publicacion) {    
+      $('tr').removeClass('selected');
+      $("#"+id_publicacion).addClass('selected'); 
+}
+
 function onclickHouse (id_publicacion) {
-    
+  highlightRow(id_publicacion);
     selectedCity = d3.select("#city_combo").property("value");
     selectedMin = d3.select("#min_amount").property("value");
     selectedMax = d3.select("#max_amount").property("value");    
@@ -212,7 +208,7 @@ function onclickHouse (id_publicacion) {
     .header("X-Requested-With", "XMLHttpRequest")
     .get(function(data){
       var houses_obj = JSON.parse(data.response);
-      console.log(houses_obj)
+      
       leaflet2(houses_obj)
 
 
